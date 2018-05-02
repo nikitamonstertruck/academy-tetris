@@ -7,17 +7,16 @@
         width: 50px;
         height: 50px;
         display: inline-block;
+        background: black;
     }
     .squareShape {
         width: 50px;
         height: 50px;
         background-color: blue;
         outline: 2px solid black;
-        background-image: url('tetris-piece.png');
         display: inline-block;
     }
     #world {
-        background-image: url('background.png');
         background-repeat: no-repeat;
     }
 </style>
@@ -44,7 +43,6 @@
         [0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0],
     ];
-
     function drawWorld() {
         document.getElementById('world').innerHTML = "";
         for(var y=0; y<world.length; y++) {
@@ -58,7 +56,6 @@
             document.getElementById('world').innerHTML += "<br>";
         }
     }
-
     function moveShapesDown() {
         canMove = true;
         for(var y=world.length-1; y>=0; y--) {
@@ -84,7 +81,6 @@
         }
         checkLines();
     }
-
     function moveShapesLeft() {
         canMove = true;
         for(var y=world.length-1; y>=0; y--) {
@@ -108,7 +104,6 @@
             drawWorld();
         }
     }
-
     function moveShapesRight() {
         canMove = true;
         for(var y=world.length-1; y>=0; y--) {
@@ -132,8 +127,6 @@
             drawWorld();
         }
     }
-
-
     function freeze(){
         for(var y=world.length-1; y>=0; y--) {
             for(var x=0; x<world[y].length; x++) {
@@ -148,7 +141,6 @@
         world[2] = [0,0,0,1,0,0,0,0]
         world[3] = [0,0,0,1,0,0,0,0]
     }
-
     function checkLines(){
         for(var y=world.length-1; y>=0; y--) {
             fullLine = true;
@@ -158,13 +150,11 @@
                 }
             }
             if (fullLine) {
-                world.splice(y, 1);
-                world.splice(0, 0, [0,0,0,0,0,0,0,0])
+                world.splice(y, 1,[0,0,0,0,0,0,0,0]);
                 y++;
             }
         }
     }
-
     document.onkeydown = function(e) {
         console.log(e)
         if (e.keyCode === 37){
@@ -175,7 +165,6 @@
             moveShapesDown();
         }
     }
-
     function gameLoop(){
         moveShapesDown();
         drawWorld();
@@ -184,5 +173,4 @@
     drawWorld();
     gameLoop();
     
-
 </script>
